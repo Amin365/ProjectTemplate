@@ -1,0 +1,81 @@
+name: Deploy (VPS)
+
+env:
+  FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
+
+on:
+  push:
+    branches:
+      - "main"
+
+concurrency:
+  group: deploy-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout (for metadata only)
+        uses: actions/checkout@v4
+
+      - name: Deploy over SSH (git pull + build + pm2 reload + copy frontend)
+        uses: appleboy/ssh-action@v1.2.0
+        with:
+          host: ${{ secrets.VPS_HOST }}
+          username: root
+          key: ${{ secrets.VPS_SSH_KEY }}
+          script_stop: true
+          script: |
+            set -e
+
+            APP_PATH="${{ secrets.VPS_APP_PATH }}"
+            if [ -z "$APP_PATH" ]; then
+              APP_PATH="/root/FinalProjects"
+            fi
+
+            PM2_APP_NAME="${{ secrets.PM2_APP_NAME }}"
+            if [ -z "$PM2_APP_NAME" ]; then
+              PM2_APP_NAME="backend"
+            fi
+
+            echo "==> Go to app directory"
+            cd "$APP_PATH"
+
+            # Auto-enter subfolder if needed
+            if [ ! -f "package.json" ] && [ -d "finalproject" ] && [ -f "finalproject/package.json" ]; then
+              cd "finalproject"
+            fi
+
+            echo "==> Ensure correct branch"
+            git fetch --all --prune
+            git checkout main
+            git reset --hard origin/main
+
+            echo "==> Install backend dependencies"
+            npm ci
+
+            echo "==> Install frontend dependencies"
+            npm ci --prefix frontend
+
+            echo "==> Clean previous frontend build"
+            rm -rf frontend/dist
+
+            echo "==> Build frontend with memory optimization"
+            export NODE_OPTIONS="--max-old-space-size=768"
+            npm run build --prefix frontend
+
+            echo "==> Copy build to Nginx root"
+            rm -rf /var/www/html/*
+            cp -r frontend/dist/* /var/www/html/
+
+            echo "==> Fix permissions"
+            chown -R www-data:www-data /var/www/html
+            chmod -R 755 /var/www/html
+
+            echo "==> Restart backend"
+            pm2 reload "$PM2_APP_NAME" --update-env
+            pm2 save
+
+            echo "==> Deployment completed successfully 🚀"
