@@ -14,6 +14,7 @@ import NotificationPreferences from './NotificationPreferences.js';
 
 
 import AuditLog from './AuditLog.js';
+import Contact from './Contact.js';
 
 import PushSubscription from './ushSubscription.js';
 
@@ -95,6 +96,8 @@ export {
  
 
   AuditLog,
+
+  Contact,
 
   PushSubscription,
   

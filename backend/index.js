@@ -12,6 +12,7 @@ import RoleRouter from "./routers/RoleRouter.js"
 import NotificationRouter from "./routers/NotificationRouter.js"
 
 import UserRouter from "./routers/UserRouter.js"
+import ContactRouter from "./routers/ContactRouter.js"
 
 import helmet from "helmet";
 import {xss} from "express-xss-sanitizer";
@@ -115,6 +116,7 @@ app.use("/api", RoleRouter);
 
 app.use('/api',NotificationRouter)
 app.use('/api',UserRouter)
+app.use('/api', ContactRouter)
 
 app.use('/api',DashboardRouter)
 

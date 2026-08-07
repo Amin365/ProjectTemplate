@@ -10,6 +10,24 @@ import store, { persister } from './app/store.js'
 import { Toaster } from "@/components/ui/sonner"
 import { ThemeProvider } from './components/ThemeProvider.jsx'
 import {toast} from "sonner";
+import "./styles/globals.css";
+
+// Preload XalTech public routes during idle time so navigation feels instant
+if (typeof window !== "undefined" && 'requestIdleCallback' in window) {
+  requestIdleCallback(() => {
+    import("./components/XalTech/HomePage");
+    import("./components/XalTech/ServicesPage");
+    import("./components/XalTech/AboutPage");
+  }, { timeout: 2000 });
+} else if (typeof window !== "undefined") {
+  // fallback
+  setTimeout(() => {
+    import("./components/XalTech/HomePage");
+    import("./components/XalTech/ServicesPage");
+    import("./components/XalTech/AboutPage");
+  }, 1200);
+}
+
 // import { HelmetProvider } from "react-helmet-async";
 
 /* =========================
