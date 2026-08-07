@@ -48,17 +48,12 @@ export default function ContactDialog({ open, onClose }) {
     if (Object.keys(e).length) return;
     setSubmitting(true);
     try {
-      const resp = await fetch('/api/contacts', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(form),
-      });
-      if (!resp.ok) throw new Error('Network response was not ok');
-      await resp.json();
+      await api.post('/contacts', form);
       toast.success('Thanks — we will respond within 24 hours.');
       onClose();
     } catch (err) {
-      toast.error("Submission failed. Please try again later.");
+      const message = err?.response?.data?.message || "Submission failed. Please try again later.";
+      toast.error(message);
     } finally {
       setSubmitting(false);
     }

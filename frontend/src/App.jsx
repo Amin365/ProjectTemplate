@@ -3,7 +3,7 @@ import { Routes, Route } from "react-router";
 
 import ProtectedRoute from "./pages/ProtectedRoute";
 import Loader from "./components/Loader";
-import PWAInstallPrompt from "./components/PWAInstallPrompt";
+// import PWAInstallPrompt from "./components/PWAInstallPrompt";
 import ScrollToHash from "./components/ScrollToHash";
 
 import { XalTechRouter } from "@/components/XalTech/xaltech.router";
@@ -126,7 +126,7 @@ function App() {
   return (
     <>
       {/* Shared application components */}
-      <PWAInstallPrompt />
+      
       <ScrollToHash />
 
       <Suspense fallback={<PageLoader />}>

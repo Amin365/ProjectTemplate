@@ -1,10 +1,10 @@
 import { useQuery } from '@tanstack/react-query';
 import { useState } from 'react';
+import api from '@/app/api/apislice';
 
 async function fetchContacts() {
-  const res = await fetch('/api/contacts');
-  if (!res.ok) throw new Error('Failed to load contacts');
-  return res.json();
+  const res = await api.get('/contacts');
+  return res.data;
 }
 
 export default function ContactsAdmin() {
