@@ -2,7 +2,7 @@ import axios from "axios";
 import store from "../store.js";
 
 const Api_URL = process.env.NODE_ENV === "production"
-  ? "https://jjureadingclub.com/api"
+  ? "https://projecttemplate-hb8m.onrender.com/api"
   : "http://localhost:5000/api";
 
 
