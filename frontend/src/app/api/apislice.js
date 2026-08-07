@@ -2,8 +2,8 @@ import axios from "axios";
 import store from "../store.js";
 
 const Api_URL = process.env.NODE_ENV === "production"
-  ? "https://projecttemplate-hb8m.onrender.com/api"
-  : "http://localhost:5000/api";
+  ? "https://xaltech.tech/api"
+  : "http://localhost:5800/api";
 
 
 const api = axios.create({

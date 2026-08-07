@@ -441,7 +441,7 @@ function Contact() {
             <Mail size={17} /> Email XalTech
           </a>
           <span>hello@xaltech.com</span>
-          <small>Addis Ababa, Ethiopia</small>
+          <small>Jigjiga , Ethiopia</small>
         </div>
       </div>
     </section>

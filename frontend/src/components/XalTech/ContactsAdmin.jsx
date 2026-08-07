@@ -1,48 +1,76 @@
-import { useQuery } from '@tanstack/react-query';
 import { useState } from 'react';
 import api from '@/app/api/apislice';
+import DataTable from '@/components/shared/Tables/Datatable';
+import { Badge } from '@/components/ui/badge';
 
-async function fetchContacts() {
-  const res = await api.get('/contacts');
-  return res.data;
+async function fetchContacts({ page, limit }) {
+  const res = await api.get('/contacts', { params: { page, limit } });
+  const payload = res.data ?? {};
+  const rows = payload.data ?? [];
+  const total = payload.meta?.total ?? rows.length;
+  return {
+    data: rows,
+    total,
+    totalPages: Math.max(1, Math.ceil(total / limit)),
+  };
 }
 
 export default function ContactsAdmin() {
-  const { data, error, isLoading } = useQuery(['contacts'], fetchContacts, { retry: false });
   const [selected, setSelected] = useState(null);
 
-  if (isLoading) return <div>Loading contacts…</div>;
-  if (error) return <div>Error loading contacts</div>;
-
-  const rows = data?.data || [];
+  const columns = [
+    {
+      key: 'id',
+      header: 'ID',
+      render: (row) => row.id,
+    },
+    {
+      key: 'name',
+      header: 'Name',
+      render: (row) => row.name,
+      sortable: true,
+    },
+    {
+      key: 'email',
+      header: 'Email',
+      render: (row) => row.email,
+      sortable: true,
+    },
+    {
+      key: 'phone',
+      header: 'Phone',
+      render: (row) => row.phone || '—',
+    },
+    {
+      key: 'status',
+      header: 'Status',
+      render: (row) => <Badge variant="secondary">{row.status || 'new'}</Badge>,
+      sortable: true,
+    },
+    {
+      key: 'createdAt',
+      header: 'Submitted',
+      render: (row) => new Date(row.createdAt).toLocaleString(),
+      sortable: true,
+    },
+  ];
 
   return (
     <div>
-      <h2>Contact submissions</h2>
-      <table className="contacts-table">
-        <thead>
-          <tr>
-            <th>ID</th>
-            <th>Name</th>
-            <th>Email</th>
-            <th>Phone</th>
-            <th>Status</th>
-            <th>Submitted</th>
-          </tr>
-        </thead>
-        <tbody>
-          {rows.map((r) => (
-            <tr key={r.id} onClick={() => setSelected(r)} style={{ cursor: 'pointer' }}>
-              <td>{r.id}</td>
-              <td>{r.name}</td>
-              <td>{r.email}</td>
-              <td>{r.phone}</td>
-              <td>{r.status}</td>
-              <td>{new Date(r.createdAt).toLocaleString()}</td>
-            </tr>
-          ))}
-        </tbody>
-      </table>
+      <DataTable
+        title="Contact submissions"
+        subtitle="Messages sent from the public contact form"
+        queryKey="contacts"
+        fetchFn={fetchContacts}
+        columns={columns}
+        rowKey={(row) => row.id}
+        onRowClick={(row) => setSelected(row)}
+        searchable={false}
+        columnPrefsEnabled={false}
+        savedViewsEnabled={false}
+        exportable={false}
+        emptyMessage="No contact submissions yet."
+      />
 
       {selected && (
         <div className="contact-details">
