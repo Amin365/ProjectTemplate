@@ -171,6 +171,8 @@ const allowedOrigins = [
   "http://localhost:5174",
   "https://jjureadingclub.com",
   "https://projecttemplate-hb8m.onrender.com",
+  "https://xaltech.tech/",
+  "https://www.xaltech.tech/"
 ];
 
 app.use(
