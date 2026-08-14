@@ -136,8 +136,8 @@ function Header() {
         </nav>
 
         <NavLink
-          to="/srs/contact"
-          className="hidden min-h-11 items-center gap-2 bg-[var(--color-basalt)] px-5 text-[12px] font-semibold text-white transition hover:bg-[var(--color-basalt-soft)] xl:inline-flex"
+          to="/srs/contacts"
+          className="hidden min-h-11 items-center gap-2  px-5 text-[12px]  border rounded-full font-semibold text-white transition  xl:inline-flex"
         >
           Contact the enterprise
           <ArrowUpRight size={14} className="text-[var(--color-sandstone-deep)]" />
@@ -192,7 +192,7 @@ function Header() {
             <div className="mt-5 grid gap-3 sm:grid-cols-2">
               <NavLink
                 to="/srs/contact"
-                className="inline-flex min-h-12 items-center justify-center gap-2 bg-[var(--color-basalt)] px-5 text-sm font-semibold text-white"
+                className="inline-flex min-h-12 items-center justify-center gap-2 border rounded-full px-5 text-sm font-semibold text-white"
               >
                 Contact the enterprise
                 <ArrowUpRight size={15} className="text-[var(--color-sandstone-deep)]" />

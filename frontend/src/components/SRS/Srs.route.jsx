@@ -35,14 +35,14 @@ export const SrsRouter = [
     element: <CareersPage />,
   },
   {
-    path: "contact",
+    path: "contacts",
     element: <ContactPage />,
   },
 
   // Backward-compatible aliases for the earlier SRS URLs.
   {
     path: "contacts",
-    element: <Navigate to="/srs/contact" replace />,
+    element: <Navigate to="/srs/contacts" replace />,
   },
   {
     path: "career",

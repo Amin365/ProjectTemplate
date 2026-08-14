@@ -18,7 +18,7 @@ const exploreLinks = [
 const publicLinks = [
   { label: "News & announcements", to: "/srs/news", icon: Newspaper },
   { label: "Careers", to: "/srs/careers", icon: BriefcaseBusiness },
-  { label: "Contact", to: "/srs/contact", icon: Mail },
+  { label: "Contact", to: "/srs/contacts", icon: Mail },
 ];
 
 export default function Footer() {
@@ -128,7 +128,7 @@ export default function Footer() {
             </a>
 
             <NavLink
-              to="/srs/contact"
+              to="/srs/contacts"
               className="mt-7 inline-flex items-center gap-2 border-b border-white/25 pb-1 text-xs font-semibold text-white transition hover:border-[var(--color-sandstone-deep)] hover:text-[var(--color-sandstone-deep)]"
             >
               Contact the enterprise

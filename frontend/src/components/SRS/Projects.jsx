@@ -186,7 +186,7 @@ function ProjectsHero() {
             <div className="mt-10 flex flex-wrap gap-3">
               <Button
                 as={NavLink}
-                to="/contact"
+                to="/srs/contacts"
                 variant="dark"
                 className="min-h-12 px-6"
               >
@@ -316,7 +316,7 @@ function ProjectPortfolio() {
                 </p>
 
                 <NavLink
-                  to="/contact"
+                  to="/srs/contacts"
                   className="mt-8 inline-flex items-center gap-2 text-sm font-semibold text-white"
                 >
                   Discuss this project
@@ -364,7 +364,7 @@ function ProjectPortfolio() {
                       </p>
 
                       <NavLink
-                        to="/contact"
+                        to="/srs/contacts"
                         className="mt-5 inline-flex items-center gap-2 text-xs font-semibold text-[var(--color-basalt)]"
                       >
                         Project enquiry

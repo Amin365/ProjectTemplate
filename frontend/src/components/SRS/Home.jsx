@@ -47,7 +47,7 @@ const exploreLinks = [
     icon: Handshake,
     title: "Investment & partnership",
     text: "Discover opportunities to work with SRS Mining Enterprise.",
-    to: "/contact",
+    to: "/srs/contacts",
   },
   {
     icon: FileText,
@@ -287,24 +287,19 @@ function Hero() {
             </p>
 
             <div className="mt-9 flex flex-wrap gap-3">
-              <Button
-                as={NavLink}
-                to="/resources"
-                variant="dark"
-                className="min-h-12 px-6"
-              >
-                Explore our resources
-                <ArrowRight size={16} />
-              </Button>
+              <NavLink to="/srs/services" className="inline-block">
+  <Button variant="dark" className="min-h-12 px-6">
+    Explore our resources
+    <ArrowRight size={16} />
+  </Button>
+</NavLink>
 
-              <Button
-                as={NavLink}
-                to="/about"
-                variant="outline"
-                className="min-h-12 border-[var(--color-basalt)]/15 bg-white px-6 text-[var(--color-basalt)]"
-              >
-                About the enterprise
-              </Button>
+              <NavLink to="/srs/about" className="inline-block">
+  <Button variant="dark"  className="min-h-12 px-6 border rounded-full">
+      About the enterprise
+    <ArrowRight size={16} />
+  </Button>
+</NavLink>
             </div>
 
             {/* subtle capability strip */}
@@ -435,7 +430,7 @@ function MandateAndData() {
             </p>
 
             <NavLink
-              to="/about"
+              to="/srs/about"
               className="mt-8 inline-flex items-center gap-2 text-sm font-semibold text-[var(--color-sandstone-deep)]"
             >
               Learn about our mandate

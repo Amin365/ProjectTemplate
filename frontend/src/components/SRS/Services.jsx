@@ -250,7 +250,7 @@ function ServicesHero() {
             <div className="mt-9 flex flex-wrap gap-3">
               <Button
                 as={NavLink}
-                to="/contact"
+                to="/srs/contacts"
                 variant="dark"
                 className="min-h-12 px-6"
               >
@@ -879,7 +879,7 @@ function ServicesCTA() {
 
             <Button
               as={NavLink}
-              to="/contact"
+              to="/srs/contacts"
               variant="outline"
               className="min-h-12 border-white bg-white px-6 text-[var(--color-sandstone-deep)] hover:bg-white/90"
             >
