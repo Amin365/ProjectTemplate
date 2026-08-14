@@ -7,19 +7,19 @@ import Loader from "./components/Loader";
 import ScrollToHash from "./components/ScrollToHash";
 
 import { XalTechRouter } from "@/components/XalTech/xaltech.router";
+import SrsLayout from "@/components/SRS/SrsLayout";
+import { SrsRouter } from "@/components/SRS/Srs.route";
 
-import { SrsRouter } from "@/components/SRS/srs.route";
-
-// 
+//
 // Dashboard
-// 
+//
 
 const DashboardPage = lazy(() => import("./pages/Dashboard"));
 const DashboardHome = lazy(() => import("./pages/DashboardHome"));
 
-// 
+//
 // Authentication
-// 
+//
 
 const LoginPage = lazy(() => import("./pages/Loginpage"));
 
@@ -39,9 +39,9 @@ const SetupPassword = lazy(() =>
   import("./components/login/SetupPassword")
 );
 
-// 
+//
 // Dashboard Components
-// 
+//
 
 const SectionCards = lazy(() =>
   import("./components/Section-cards").then((module) => ({
@@ -49,9 +49,9 @@ const SectionCards = lazy(() =>
   }))
 );
 
-// 
+//
 // Users
-// 
+//
 
 const Users = lazy(() =>
   import("./components/Users/UserTable")
@@ -69,17 +69,17 @@ const Profile = lazy(() =>
   import("./components/Users/UserProfile")
 );
 
-// 
+//
 // ID Card
-// 
+//
 
 const IDcard = lazy(() =>
   import("./components/IDcard/PVCIDCard")
 );
 
-// 
+//
 // Notifications
-// 
+//
 
 const NotificationCenter = lazy(() =>
   import("./components/Notifications/NotificationCenter")
@@ -93,9 +93,9 @@ const AdminAnnouncements = lazy(() =>
   import("./components/Notifications/AdminAnnouncements")
 );
 
-// 
+//
 // Admin Governance
-// 
+//
 
 const AuditLogViewer = lazy(() =>
   import("./components/Admin/AuditLogViewer")
@@ -109,9 +109,9 @@ const PermissionMatrix = lazy(() =>
   import("./components/Admin/PermissionMatrix")
 );
 
-// 
+//
 // Shared Lazy Loader
-// 
+//
 
 const PageLoader = () => (
   <Loader
@@ -120,20 +120,18 @@ const PageLoader = () => (
   />
 );
 
-// 
+//
 // App
-// 
+//
 
 function App() {
   return (
     <>
       {/* Shared application components */}
-      
       <ScrollToHash />
 
       <Suspense fallback={<PageLoader />}>
         <Routes>
-
           {/* ==
               XALTECH PUBLIC WEBSITE
           == */}
@@ -148,7 +146,13 @@ function App() {
               />
             ))}
           </Route>
-          <Route path="/srs">
+
+          {/* ==
+              SRS MINING ENTERPRISE PUBLIC WEBSITE
+              /srs and /srs/*
+          == */}
+
+          <Route path="/srs" element={<SrsLayout />}>
             {SrsRouter.map((route) => (
               <Route
                 key={route.path || "srs-home"}
@@ -200,14 +204,13 @@ function App() {
               </ProtectedRoute>
             }
           >
-
             {/* Dashboard Home */}
             <Route
               index
               element={<DashboardHome />}
             />
 
-            {/* 
+            {/*
                 USERS
              */}
 
@@ -226,7 +229,7 @@ function App() {
               element={<UserDetailsAdmin />}
             />
 
-            {/* 
+            {/*
                 PROFILE
              */}
 
@@ -235,7 +238,7 @@ function App() {
               element={<Profile />}
             />
 
-            {/* 
+            {/*
                 ID CARD
              */}
 
@@ -244,7 +247,7 @@ function App() {
               element={<IDcard />}
             />
 
-            {/* 
+            {/*
                 NOTIFICATIONS
              */}
 
@@ -263,7 +266,7 @@ function App() {
               element={<AdminAnnouncements />}
             />
 
-            {/* 
+            {/*
                 ADMIN GOVERNANCE
              */}
 
@@ -281,9 +284,7 @@ function App() {
               path="permissions"
               element={<PermissionMatrix />}
             />
-
           </Route>
-
         </Routes>
       </Suspense>
     </>
