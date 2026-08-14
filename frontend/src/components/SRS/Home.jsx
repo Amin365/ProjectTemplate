@@ -254,7 +254,7 @@ function Hero() {
               />
 
               <span className="text-[10px] font-semibold uppercase tracking-[0.15em] text-[var(--color-basalt)]/60">
-                Somali Regional State · Government Enterprise
+                Somali Regional State · Mining Enterprise
               </span>
             </div>
 
