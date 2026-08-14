@@ -1,28 +1,13 @@
 import { lazy } from "react";
+import { Navigate } from "react-router";
 
-const HomePage = lazy(() =>
-  import("./Home")
-);
-
-const AboutPage = lazy(() =>
-  import("./About")
-);
-
-const ServicesPage = lazy(() =>
-  import("./Services")
-);
-const ContactsPage = lazy(() =>
-  import("./Contact")
-);
-const ProjectPage = lazy(() =>
-  import("./Projects")
-);
-const NewsPage = lazy(() =>
-  import("./News")
-);
-const CarearPage = lazy(() =>
-  import("./Careers")
-);
+const HomePage = lazy(() => import("./Home"));
+const AboutPage = lazy(() => import("./About"));
+const ServicesPage = lazy(() => import("./Services"));
+const ContactPage = lazy(() => import("./Contact"));
+const ProjectsPage = lazy(() => import("./Projects"));
+const NewsPage = lazy(() => import("./News"));
+const CareersPage = lazy(() => import("./Careers"));
 
 export const SrsRouter = [
   {
@@ -38,19 +23,37 @@ export const SrsRouter = [
     element: <ServicesPage />,
   },
   {
-    path: "contacts",
-    element: <ContactsPage />,
-  },
-  {
     path: "projects",
-    element: <ProjectPage />,
+    element: <ProjectsPage />,
   },
   {
     path: "news",
     element: <NewsPage />,
   },
   {
+    path: "careers",
+    element: <CareersPage />,
+  },
+  {
+    path: "contact",
+    element: <ContactPage />,
+  },
+
+  // Backward-compatible aliases for the earlier SRS URLs.
+  {
+    path: "contacts",
+    element: <Navigate to="/srs/contact" replace />,
+  },
+  {
     path: "career",
-    element: <CarearPage />,
+    element: <Navigate to="/srs/careers" replace />,
+  },
+  {
+    path: "carear",
+    element: <Navigate to="/srs/careers" replace />,
+  },
+  {
+    path: "*",
+    element: <Navigate to="/srs" replace />,
   },
 ];
