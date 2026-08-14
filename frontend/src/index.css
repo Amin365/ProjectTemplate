@@ -136,3 +136,81 @@
     @apply bg-background text-foreground;
   }
 }
+
+
+
+@theme {
+  /* Core palette — Ogaden strata: basalt, limestone, sandstone, gas-flare teal, mica gold */
+  --color-basalt: #1B1815;
+  --color-basalt-soft: #241F1A;
+  --color-basalt-line: #38322B;
+
+  --color-limestone: #EFE9DA;
+  --color-limestone-dim: #E4DDC9;
+  --color-limestone-line: #D8CFB6;
+
+  --color-sandstone: #B97A2E;
+  --color-sandstone-deep: #8F5B1F;
+  --color-sandstone-pale: #E4B685;
+
+  --color-flare: #1F6F6B;
+  --color-flare-deep: #154E4B;
+  --color-flare-pale: #9DC9C6;
+
+  --color-mica: #C9A227;
+  --color-mica-pale: #E7CE7C;
+
+  --color-ink: #1F1B16;
+  --color-ink-soft: #58514A;
+
+  --font-display: "Newsreader", ui-serif, Georgia, serif;
+  --font-body: "IBM Plex Sans", ui-sans-serif, system-ui, sans-serif;
+  --font-mono: "IBM Plex Mono", ui-monospace, monospace;
+
+  --shadow-strata: 0 1px 0 0 var(--color-basalt-line);
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background-color: var(--color-limestone);
+  color: var(--color-ink);
+  font-family: var(--font-body);
+  -webkit-font-smoothing: antialiased;
+}
+
+::selection {
+  background-color: var(--color-mica-pale);
+  color: var(--color-basalt);
+}
+
+/* visible keyboard focus */
+a:focus-visible, button:focus-visible, [tabindex]:focus-visible {
+  outline: 2px solid var(--color-flare);
+  outline-offset: 2px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* core-sample signature strip */
+.core-strip {
+  background: repeating-linear-gradient(
+    to bottom,
+    var(--color-sandstone) 0 18%,
+    var(--color-sandstone-deep) 18% 30%,
+    var(--color-limestone-dim) 30% 46%,
+    var(--color-flare-deep) 46% 58%,
+    var(--color-basalt-soft) 58% 78%,
+    var(--color-mica) 78% 86%,
+    var(--color-basalt) 86% 100%
+  );
+}

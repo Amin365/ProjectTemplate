@@ -8,6 +8,8 @@ import ScrollToHash from "./components/ScrollToHash";
 
 import { XalTechRouter } from "@/components/XalTech/xaltech.router";
 
+import { SrsRouter } from "@/components/SRS/srs.route";
+
 // 
 // Dashboard
 // 
@@ -140,6 +142,16 @@ function App() {
             {XalTechRouter.map((route) => (
               <Route
                 key={route.path || "xaltech-home"}
+                index={route.index}
+                path={route.path}
+                element={route.element}
+              />
+            ))}
+          </Route>
+          <Route path="/srs">
+            {SrsRouter.map((route) => (
+              <Route
+                key={route.path || "srs-home"}
                 index={route.index}
                 path={route.path}
                 element={route.element}

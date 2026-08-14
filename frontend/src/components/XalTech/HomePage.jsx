@@ -1,6 +1,6 @@
 
 import { useState } from "react";
-import Header, { Logo } from "./Header";
+import Header, { Logo } from "../SRS/Header";
 import {
   ArrowRight,
   Bot,

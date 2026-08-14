@@ -1,14 +1,16 @@
 import { useState, useEffect } from "react";
 import { Link, NavLink, useLocation } from "react-router";
 import { ArrowRight, Menu, X } from "lucide-react";
-import ContactDialog from "./ContactDialog";
+import ContactDialog from "../XalTech/ContactDialog";
 
 const NAV_LINKS = [
-  { label: "Home", to: "/" },
+  { label: "Home", to: "/srs" },
 
-  { label: "About", to: "/about" },
-    { label: "Services", to: "/services" },
-      { label: "Projects", to: "/projects" },
+  { label: "About", to: "/srs/about" },
+    { label: "Services", to: "/srs/services" },
+      { label: "Projects", to: "/srs/projects" },
+      { label: "Contacts", to: "/srs/contacts" },
+      { label: "Carear", to: "/srs/carear" },
 ];
 
 export function Logo({ light = false }) {
@@ -23,7 +25,7 @@ export function Logo({ light = false }) {
         <path d="M25 9 L31 3 M31 3 H26 M31 3 V8" stroke="#5EEAD4" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" />
       </svg>
       <span className={`logo-name ${light ? "logo-name--light" : ""}`}>
-        Xal<span>Tech</span>
+        SRS<span></span>
       </span>
     </span>
   );
@@ -42,9 +44,9 @@ function Header() {
 
   const preloadRoute = (to) => {
     if (!to) return;
-    if (to === "/services") import("./ServicesPage");
-    if (to === "/about") import("./AboutPage");
-    if (to === "/") import("./HomePage");
+    if (to === "/services") import("../XalTech/ServicesPage");
+    if (to === "/about") import("../XalTech/AboutPage");
+    if (to === "/") import("../XalTech/HomePage");
   };
 
   return (
