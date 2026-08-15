@@ -114,7 +114,7 @@ export const stats = [
   { value: "271 TCF", label: "Estimated Calub gas reserve (region-wide estimate)" },
   { value: "3", label: "Major salt localities — Afder, Boji-dol, El-dere" },
   { value: "3", label: "Mineral-belt zones — Korahe, Liben, Shinile" },
-  { value: "1991", label: "Somali Regional State established" },
+  { value: "4", label: "Major resource groups — gas, salt, gold & industrial minerals" },
 ]
 
 export const newsItems = [
