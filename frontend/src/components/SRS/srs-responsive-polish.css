@@ -1,0 +1,149 @@
+/* =========================================================
+   SRS PUBLIC SITE — RESPONSIVE HERO POLISH
+   Keeps hero CTAs on one row and controls title measure.
+   ========================================================= */
+
+/* ---------------------------------------------------------
+   HERO CTA ROWS
+   Home, Services and Projects must keep both primary CTAs
+   on a single line on desktop and mobile.
+   --------------------------------------------------------- */
+
+.srs-route-home main > section:first-child .mt-9.flex.flex-wrap.gap-3,
+.srs-route-services main > section:first-child .mt-9.flex.flex-wrap.gap-3,
+.srs-route-projects main > section:first-child .mt-10.flex.flex-wrap.gap-3 {
+  display: flex !important;
+  flex-wrap: nowrap !important;
+  align-items: stretch;
+  gap: 0.625rem !important;
+  width: 100%;
+}
+
+.srs-route-home main > section:first-child .mt-9.flex.flex-wrap.gap-3 > *,
+.srs-route-services main > section:first-child .mt-9.flex.flex-wrap.gap-3 > *,
+.srs-route-projects main > section:first-child .mt-10.flex.flex-wrap.gap-3 > * {
+  min-width: 0;
+  white-space: nowrap;
+}
+
+.srs-route-home main > section:first-child .mt-9.flex.flex-wrap.gap-3 button,
+.srs-route-services main > section:first-child .mt-9.flex.flex-wrap.gap-3 > *,
+.srs-route-projects main > section:first-child .mt-10.flex.flex-wrap.gap-3 > * {
+  white-space: nowrap;
+}
+
+/* ---------------------------------------------------------
+   SERVICE HERO TITLE
+   Keep the headline visually close to three editorial lines.
+   --------------------------------------------------------- */
+
+.srs-route-services main > section:first-child h1 {
+  max-width: 36rem !important;
+  text-wrap: balance;
+}
+
+.srs-route-services main > section:first-child h1 > span {
+  display: block;
+}
+
+/* ---------------------------------------------------------
+   PROJECTS HERO TITLE
+   Existing highlighted span becomes two controlled lines,
+   giving the complete headline a three-line composition.
+   --------------------------------------------------------- */
+
+.srs-route-projects main > section:first-child h1 {
+  max-width: 31rem !important;
+  text-wrap: balance;
+}
+
+.srs-route-projects main > section:first-child h1 > span {
+  max-width: 29rem;
+}
+
+/* ---------------------------------------------------------
+   MOBILE
+   Compact CTA typography/padding so both actions still fit.
+   --------------------------------------------------------- */
+
+@media (max-width: 639px) {
+  .srs-route-home main > section:first-child .mt-9.flex.flex-wrap.gap-3,
+  .srs-route-services main > section:first-child .mt-9.flex.flex-wrap.gap-3,
+  .srs-route-projects main > section:first-child .mt-10.flex.flex-wrap.gap-3 {
+    display: grid !important;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 0.5rem !important;
+  }
+
+  .srs-route-home main > section:first-child .mt-9.flex.flex-wrap.gap-3 > *,
+  .srs-route-services main > section:first-child .mt-9.flex.flex-wrap.gap-3 > *,
+  .srs-route-projects main > section:first-child .mt-10.flex.flex-wrap.gap-3 > * {
+    width: 100%;
+    min-width: 0;
+  }
+
+  .srs-route-home main > section:first-child .mt-9.flex.flex-wrap.gap-3 button,
+  .srs-route-home main > section:first-child .mt-9.flex.flex-wrap.gap-3 a,
+  .srs-route-services main > section:first-child .mt-9.flex.flex-wrap.gap-3 > *,
+  .srs-route-projects main > section:first-child .mt-10.flex.flex-wrap.gap-3 > * {
+    justify-content: center;
+    width: 100%;
+    min-height: 2.75rem !important;
+    padding-left: 0.65rem !important;
+    padding-right: 0.65rem !important;
+    font-size: 0.69rem !important;
+    line-height: 1rem !important;
+    letter-spacing: -0.01em;
+    white-space: nowrap !important;
+  }
+
+  .srs-route-home main > section:first-child .mt-9.flex.flex-wrap.gap-3 svg,
+  .srs-route-services main > section:first-child .mt-9.flex.flex-wrap.gap-3 svg,
+  .srs-route-projects main > section:first-child .mt-10.flex.flex-wrap.gap-3 svg {
+    width: 0.8rem;
+    height: 0.8rem;
+    flex-shrink: 0;
+  }
+
+  .srs-route-services main > section:first-child h1 {
+    max-width: 21rem !important;
+    font-size: clamp(2.2rem, 10.5vw, 2.75rem) !important;
+    line-height: 1.04 !important;
+  }
+
+  .srs-route-services main > section:first-child h1 > span {
+    display: block;
+    font-size: 0.9em;
+  }
+
+  .srs-route-projects main > section:first-child h1 {
+    max-width: 20.5rem !important;
+    font-size: clamp(2.25rem, 10.5vw, 2.75rem) !important;
+    line-height: 1.04 !important;
+  }
+
+  .srs-route-projects main > section:first-child h1 > span {
+    max-width: 18rem;
+  }
+}
+
+/* ---------------------------------------------------------
+   TABLET / DESKTOP
+   Make CTA buttons intrinsic-width while retaining one row.
+   --------------------------------------------------------- */
+
+@media (min-width: 640px) {
+  .srs-route-home main > section:first-child .mt-9.flex.flex-wrap.gap-3,
+  .srs-route-services main > section:first-child .mt-9.flex.flex-wrap.gap-3,
+  .srs-route-projects main > section:first-child .mt-10.flex.flex-wrap.gap-3 {
+    width: auto;
+  }
+
+  .srs-route-services main > section:first-child h1 {
+    max-width: 35rem !important;
+  }
+
+  .srs-route-projects main > section:first-child h1 {
+    max-width: 30rem !important;
+  }
+}
