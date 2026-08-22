@@ -204,19 +204,19 @@ function Hero() {
             Admissions, attendance, exams, grades, finance, communication, and reporting stay connected from day one—so every role works from the same reliable school data.
           </p>
 
-          <div className="mt-8 flex flex-nowrap items-center gap-2 sm:gap-3">
+          <div className="mt-8 flex flex-wrap items-center gap-3">
             <Button
               size="lg"
               onClick={openBookDemo}
-              className="h-12 min-w-0 flex-[0.85] justify-center whitespace-nowrap rounded-full bg-[#0B1F3A] px-3 text-[11px] font-bold text-white shadow-[0_12px_30px_rgba(11,31,58,0.16)] hover:bg-[#12345c] sm:flex-none sm:px-6 sm:text-sm"
+              className="h-12 rounded-full bg-[#0B1F3A] px-6 font-bold text-white shadow-[0_12px_30px_rgba(11,31,58,0.16)] hover:bg-[#12345c]"
             >
-              Book a demo <ArrowRight size={14} className="ml-1" />
+              Book a demo <ArrowRight size={16} className="ml-1" />
             </Button>
             <a
               href="#modules"
-              className="inline-flex h-12 min-w-0 flex-[1.15] items-center justify-center gap-1.5 whitespace-nowrap rounded-full border border-slate-200 bg-white px-3 text-[11px] font-semibold text-[#0B1F3A] transition-colors hover:border-slate-300 hover:bg-slate-50 sm:flex-none sm:gap-2 sm:px-5 sm:text-[13px]"
+              className="inline-flex h-12 items-center gap-2 rounded-full border border-slate-200 bg-white px-5 text-[13px] font-semibold text-[#0B1F3A] transition-colors hover:border-slate-300 hover:bg-slate-50"
             >
-              Explore the system <ArrowRight size={13} />
+              Explore the system <ArrowRight size={14} />
             </a>
           </div>
 
