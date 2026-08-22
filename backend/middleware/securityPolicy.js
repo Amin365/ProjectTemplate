@@ -14,9 +14,13 @@ const defaultPublicRules = [
   { method: "POST", pattern: /^\/verify-reset-code$/i },
   { method: "POST", pattern: /^\/members$/i },
   { method: "POST", pattern: /^\/join-club$/i },
+
+  // XalTech public contact/demo submissions. Only POST is public; list,
+  // detail and update operations still require authentication downstream.
+  { method: "POST", pattern: /^\/xaltech\/contacts$/i },
   { method: "POST", pattern: /^\/contacts$/i },
-  // Production migration endpoint is intentionally public so it can be
-  // triggered without a user access token during deployment/setup.
+
+  // Production migration endpoint is intentionally public during deployment.
   { method: "POST", pattern: /^\/sync-and-migration$/i },
   { method: "GET", pattern: /^\/health\/email$/i },
   { method: "GET", pattern: /^\/share\/blog\/.+/i },
