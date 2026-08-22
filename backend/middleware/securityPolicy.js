@@ -15,6 +15,9 @@ const defaultPublicRules = [
   { method: "POST", pattern: /^\/members$/i },
   { method: "POST", pattern: /^\/join-club$/i },
   { method: "POST", pattern: /^\/contacts$/i },
+  // Production migration endpoint is intentionally public so it can be
+  // triggered without a user access token during deployment/setup.
+  { method: "POST", pattern: /^\/sync-and-migration$/i },
   { method: "GET", pattern: /^\/health\/email$/i },
   { method: "GET", pattern: /^\/share\/blog\/.+/i },
   { method: "GET", pattern: /^\/blogposts$/i },
