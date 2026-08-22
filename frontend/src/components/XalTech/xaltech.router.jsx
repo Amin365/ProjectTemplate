@@ -25,6 +25,12 @@ const ContactsAdmin = lazy(() =>
   import("./ContactsAdmin")
 );
 
+const protectedContactsAdmin = (
+  <ProtectedRoute>
+    <ContactsAdmin />
+  </ProtectedRoute>
+);
+
 export const XalTechRouter = [
   {
     index: true,
@@ -47,11 +53,11 @@ export const XalTechRouter = [
     element: <SchoolPage />,
   },
   {
+    path: "admin_contacts",
+    element: protectedContactsAdmin,
+  },
+  {
     path: "contacts/admin",
-    element: (
-      <ProtectedRoute>
-        <ContactsAdmin />
-      </ProtectedRoute>
-    ),
+    element: protectedContactsAdmin,
   },
 ];
