@@ -14,6 +14,9 @@ const ServicesPage = lazy(() =>
 const ProjectPage = lazy(() =>
   import("./ProjectPage")
 );
+const SchoolPage = lazy(() =>
+  import("./Schoolprofilepage")
+);
 
 export const XalTechRouter = [
   {
@@ -31,5 +34,9 @@ export const XalTechRouter = [
   {
     path: "projects",
     element: <ProjectPage />,
+  },
+  {
+    path: "school",
+    element: <SchoolPage />,
   },
 ];

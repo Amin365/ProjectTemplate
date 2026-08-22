@@ -351,7 +351,7 @@ function AboutFooter() {
       <div className="shell footer-main">
         <div className="footer-brand"><Logo light /><p>ERP systems, custom software, and useful AI automation built around real operations.</p></div>
         <div className="footer-links"><strong>Explore</strong><a href="/">Home</a><a href="/services">Services</a><a href="/about">About</a><a href="/#process">Process</a></div>
-        <div className="footer-links"><strong>Contact</strong><a href="mailto:hello@xaltech.com">hello@xaltech.com</a><span>Addis Ababa, Ethiopia</span></div>
+        {/* <div className="footer-links"><strong>Contact</strong><a href="mailto:hello@xaltech.com">hello@xaltech.com</a><span>Addis Ababa, Ethiopia</span></div> */}
       </div>
       <div className="shell footer-bottom"><span>© {new Date().getFullYear()} XalTech. All rights reserved.</span><span>Smart solutions for everyday progress.</span></div>
     </footer>

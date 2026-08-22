@@ -116,9 +116,9 @@ function Footer() {
           <div>
             <h5 className="font-mono text-[11px] tracking-widest uppercase text-white/35 mb-4">Contact</h5>
             <div className="flex flex-col gap-3 text-[14px] text-white/68">
-              <span>hello@xaltech.com</span>
-              <span>+251 XXX XXX XXX</span>
-              <span>Addis Ababa, Ethiopia</span>
+              <span>info@xaltech.com</span>
+              <span>+25191464449</span>
+              <span>jigiga , Ethiopia</span>
             </div>
           </div>
         </div>
