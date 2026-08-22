@@ -1,0 +1,39 @@
+/* Keep primary XalTech CTA pairs on a single row on narrow screens. */
+@media (max-width: 639px) {
+  /* Projects page: Explore XalTech School + Start a project */
+  a[href="/school"],
+  a[href="/school"] + button {
+    white-space: nowrap;
+    flex-shrink: 0;
+    height: 42px;
+    padding-left: 14px;
+    padding-right: 14px;
+    font-size: 11px;
+    gap: 6px;
+  }
+
+  a[href="/school"] svg,
+  a[href="/school"] + button svg {
+    width: 14px;
+    height: 14px;
+  }
+
+  /* School profile hero: Book a demo + Explore the system */
+  a[href="#modules"],
+  button:has(+ a[href="#modules"]) {
+    white-space: nowrap;
+    flex-shrink: 0;
+    height: 42px;
+    min-height: 42px;
+    padding-left: 14px;
+    padding-right: 14px;
+    font-size: 11px;
+    gap: 6px;
+  }
+
+  a[href="#modules"] svg,
+  button:has(+ a[href="#modules"]) svg {
+    width: 14px;
+    height: 14px;
+  }
+}
