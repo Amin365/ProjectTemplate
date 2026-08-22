@@ -5,10 +5,9 @@ import ContactDialog from "./ContactDialog";
 
 const NAV_LINKS = [
   { label: "Home", to: "/" },
-
   { label: "About", to: "/about" },
-    { label: "Services", to: "/services" },
-      { label: "Projects", to: "/projects" },
+  { label: "Services", to: "/services" },
+  { label: "Projects", to: "/projects" },
 ];
 
 export function Logo({ light = false }) {
@@ -29,7 +28,7 @@ export function Logo({ light = false }) {
   );
 }
 
-function Header() {
+function Header({ ctaLabel = "Discuss your project" }) {
   const [open, setOpen] = useState(false);
   const [contactOpen, setContactOpen] = useState(false);
 
@@ -45,6 +44,11 @@ function Header() {
     if (to === "/services") import("./ServicesPage");
     if (to === "/about") import("./AboutPage");
     if (to === "/") import("./HomePage");
+  };
+
+  const openContact = () => {
+    setOpen(false);
+    setContactOpen(true);
   };
 
   return (
@@ -72,8 +76,8 @@ function Header() {
           ))}
         </nav>
 
-        <button className="button button--small button--mint desktop-cta" type="button" onClick={() => setContactOpen(true)}>
-          Discuss your project <ArrowRight size={15} />
+        <button className="button button--small button--mint desktop-cta" type="button" onClick={openContact}>
+          {ctaLabel} <ArrowRight size={15} />
         </button>
 
         <button
@@ -105,8 +109,8 @@ function Header() {
               {link.label}
             </NavLink>
           ))}
-          <button className="button button--mint" type="button" onClick={() => { setOpen(false); setContactOpen(true); }}>
-            Discuss your project <ArrowRight size={16} />
+          <button className="button button--mint" type="button" onClick={openContact}>
+            {ctaLabel} <ArrowRight size={16} />
           </button>
         </nav>
       )}

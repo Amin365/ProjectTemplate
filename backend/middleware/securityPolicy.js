@@ -14,6 +14,7 @@ const defaultPublicRules = [
   { method: "POST", pattern: /^\/verify-reset-code$/i },
   { method: "POST", pattern: /^\/members$/i },
   { method: "POST", pattern: /^\/join-club$/i },
+  { method: "POST", pattern: /^\/contacts$/i },
   { method: "GET", pattern: /^\/health\/email$/i },
   { method: "GET", pattern: /^\/share\/blog\/.+/i },
   { method: "GET", pattern: /^\/blogposts$/i },
