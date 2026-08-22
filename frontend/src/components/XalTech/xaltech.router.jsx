@@ -1,4 +1,5 @@
 import { lazy } from "react";
+import ProtectedRoute from "@/pages/ProtectedRoute";
 
 const HomePage = lazy(() =>
   import("./HomePage")
@@ -11,11 +12,17 @@ const AboutPage = lazy(() =>
 const ServicesPage = lazy(() =>
   import("./ServicesPage")
 );
+
 const ProjectPage = lazy(() =>
   import("./ProjectPage")
 );
+
 const SchoolPage = lazy(() =>
-  import("./Schoolprofilepage")
+  import("./SchoolProfileRoute")
+);
+
+const ContactsAdmin = lazy(() =>
+  import("./ContactsAdmin")
 );
 
 export const XalTechRouter = [
@@ -38,5 +45,13 @@ export const XalTechRouter = [
   {
     path: "school",
     element: <SchoolPage />,
+  },
+  {
+    path: "contacts/admin",
+    element: (
+      <ProtectedRoute>
+        <ContactsAdmin />
+      </ProtectedRoute>
+    ),
   },
 ];
