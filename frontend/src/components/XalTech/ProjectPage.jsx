@@ -1,124 +1,105 @@
-
-import React, { useState } from "react";
+import React from "react";
+import { Link } from "react-router";
 import { Button } from "@/components/ui/button";
-import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import Header, { Logo } from "./Header";
 import {
   ArrowRight,
-  Menu,
-  X,
-  Layers,
+  BarChart3,
+  BellRing,
+  Building2,
+  CheckCircle2,
   GraduationCap,
-  AppWindow,
-  Bot,
-  Clock,
-  Hammer,
-  Rocket,
-  Archive,
-  Mail,
+  Layers3,
+  Network,
+  School,
+  ShieldCheck,
   Sparkles,
+  Users,
+  Workflow,
 } from "lucide-react";
 
-/* ------------------------------------------------------------------ */
-/*  Shared bits (Logo / Navbar / Footer / SectionHead)                  */
-/*  — mirrors Home.jsx / About.jsx so this feels like the same site     */
-/* ------------------------------------------------------------------ */
-
-const NAV_LINKS = [
-  { label: "Home", href: "#" },
-  { label: "About", href: "#" },
-  { label: "Services", href: "#" },
-  { label: "Projects", href: "#projects" },
-  { label: "Contact", href: "#contact" },
+const SCHOOL_MODULES = [
+  "Admissions",
+  "Students",
+  "Attendance",
+  "Exams",
+  "Grades",
+  "Finance",
+  "Reports",
+  "School Store",
 ];
 
-// function Logo() {
-//   return (
-//     <div className="flex items-center gap-2.5">
-//       <svg width="32" height="32" viewBox="0 0 40 40" fill="none">
-//         <rect x="3" y="3" width="12" height="12" rx="3.5" fill="#13B8A6" />
-//         <rect x="25" y="25" width="12" height="12" rx="3.5" fill="#13B8A6" opacity="0.55" />
-//         <rect x="25" y="3" width="12" height="12" rx="3.5" fill="#2878FF" />
-//         <rect x="3" y="25" width="12" height="12" rx="3.5" fill="#2878FF" opacity="0.55" />
-//         <path d="M15 15 L25 25 M25 15 L15 25" stroke="white" strokeWidth="2.4" strokeLinecap="round" />
-//         <path d="M25 9 L31 3 M31 3 H26 M31 3 V8" stroke="#5EEAD4" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" />
-//       </svg>
-//       <span className="font-bold text-[19px] tracking-tight text-white">
-//         Xal<span className="text-[#5EEAD4]">Tech</span>
-//       </span>
-//     </div>
-//   );
-// }
+const SCHOOL_HIGHLIGHTS = [
+  {
+    icon: Workflow,
+    title: "Connected operations",
+    text: "Academic, finance, communication, and administration workflows share one school data foundation.",
+  },
+  {
+    icon: ShieldCheck,
+    title: "Role-based access",
+    text: "Principals, teachers, accountants, students, and administrators see the tools and records relevant to them.",
+  },
+  {
+    icon: BellRing,
+    title: "Parent communication",
+    text: "School activity can feed parent-facing communication such as academic updates and reminders.",
+  },
+  {
+    icon: BarChart3,
+    title: "Operational reporting",
+    text: "Leadership can move from daily transactions to academic, enrollment, attendance, and finance reporting.",
+  },
+];
 
-// function Navbar() {
-//   const [open, setOpen] = useState(false);
-//   return (
-//     <header className="fixed top-0 left-0 right-0 z-50 bg-[#0B1F3A]/80 backdrop-blur-md border-b border-white/10">
-//       <div className="max-w-7xl mx-auto px-6 h-[74px] flex items-center justify-between">
-//         <a href="#"><Logo /></a>
-//         <nav className="hidden md:flex items-center gap-9">
-//           {NAV_LINKS.map((l) => (
-//             <a
-//               key={l.label}
-//               href={l.href}
-//               className={`text-[14.5px] font-medium transition-colors ${
-//                 l.label === "Projects" ? "text-white" : "text-white/70 hover:text-white"
-//               }`}
-//             >
-//               {l.label}
-//             </a>
-//           ))}
-//           <Button className="bg-[#13B8A6] hover:bg-[#5EEAD4] text-[#0B1F3A] font-bold rounded-full px-5 gap-2">
-//             Book a demo <ArrowRight size={15} />
-//           </Button>
-//         </nav>
-//         <button className="md:hidden text-white" onClick={() => setOpen(!open)}>
-//           {open ? <X size={24} /> : <Menu size={24} />}
-//         </button>
-//       </div>
-//       {open && (
-//         <div className="md:hidden bg-[#0B1F3A] border-t border-white/10 px-6 py-6 flex flex-col gap-5">
-//           {NAV_LINKS.map((l) => (
-//             <a key={l.label} href={l.href} className="text-white/80 text-[17px] font-medium" onClick={() => setOpen(false)}>
-//               {l.label}
-//             </a>
-//           ))}
-//           <Button className="bg-[#13B8A6] text-[#0B1F3A] font-bold rounded-full w-full">Book a demo</Button>
-//         </div>
-//       )}
-//     </header>
-//   );
-// }
+const PIPELINE = [
+  {
+    icon: Building2,
+    title: "Business ERP",
+    text: "Reusable finance, inventory, HR, workflow, and reporting foundations for growing organizations.",
+    status: "In development",
+  },
+  {
+    icon: Layers3,
+    title: "Vertical ERP products",
+    text: "Focused systems for sectors that need better day-to-day operations without heavyweight enterprise software.",
+    status: "Expanding",
+  },
+  {
+    icon: Sparkles,
+    title: "AI-enabled workflows",
+    text: "Automation added where it removes repetitive work, improves communication, or helps teams act on their data.",
+    status: "Planned",
+  },
+];
 
 function Footer() {
   return (
-    <footer id="contact" className="bg-[#0B1F3A] text-white/60 pt-20 pb-8 px-6">
-      <div className="max-w-7xl mx-auto">
-        <div className="grid md:grid-cols-[1.4fr_1fr_1fr] gap-10 pb-12 border-b border-white/10">
+    <footer className="bg-[#0B1F3A] px-6 pb-8 pt-16 text-white/60">
+      <div className="mx-auto max-w-7xl">
+        <div className="grid gap-10 border-b border-white/10 pb-12 md:grid-cols-[1.4fr_1fr_1fr]">
           <div>
-            <Logo />
-            <p className="text-[13.5px] leading-relaxed mt-4 max-w-xs text-white/45">
-              Xal — meaning solution. We build the ERP systems, school management platforms, and
-              custom software that help organizations run on clarity.
+            <Logo light />
+            <p className="mt-4 max-w-xs text-[13.5px] leading-relaxed text-white/45">
+              XalTech builds practical software systems that connect everyday operations, people, and data.
             </p>
           </div>
           <div>
-            <h5 className="font-mono text-[11px] tracking-widest uppercase text-white/35 mb-4">Navigate</h5>
+            <h5 className="mb-4 font-mono text-[11px] uppercase tracking-widest text-white/35">Navigate</h5>
             <div className="flex flex-col gap-3 text-[14px]">
-              <a href="#" className="hover:text-[#5EEAD4] transition-colors">Home</a>
-              <a href="#" className="hover:text-[#5EEAD4] transition-colors">About</a>
-              <a href="#" className="hover:text-[#5EEAD4] transition-colors">Services</a>
-              <a href="#projects" className="hover:text-[#5EEAD4] transition-colors">Projects</a>
-              <a href="#contact" className="hover:text-[#5EEAD4] transition-colors">Contact</a>
+              <Link to="/" className="transition-colors hover:text-[#5EEAD4]">Home</Link>
+              <Link to="/about" className="transition-colors hover:text-[#5EEAD4]">About</Link>
+              <Link to="/services" className="transition-colors hover:text-[#5EEAD4]">Services</Link>
+              <Link to="/projects" className="transition-colors hover:text-[#5EEAD4]">Projects</Link>
             </div>
           </div>
           <div>
-            <h5 className="font-mono text-[11px] tracking-widest uppercase text-white/35 mb-4">Contact</h5>
+            <h5 className="mb-4 font-mono text-[11px] uppercase tracking-widest text-white/35">Contact</h5>
             <div className="flex flex-col gap-3 text-[14px] text-white/68">
               <span>info@xaltech.com</span>
-              <span>+25191464449</span>
-              <span>jigiga , Ethiopia</span>
+              <span>+251 914644449</span>
+              <span>Jigjiga, Ethiopia</span>
             </div>
           </div>
         </div>
@@ -131,313 +112,207 @@ function Footer() {
   );
 }
 
-function SectionHead({ eyebrow, title, accent, desc, dark = false }) {
+function Hero() {
   return (
-    <div className="grid lg:grid-cols-[340px_1fr] gap-10 mb-14">
-      <div>
-        <div className={`inline-flex items-center gap-2 text-[12px] font-mono tracking-widest uppercase mb-4 ${dark ? "text-[#5EEAD4]" : "text-[#13B8A6]"}`}>
-          <span className={`w-1.5 h-1.5 rounded-sm ${dark ? "bg-[#5EEAD4]" : "bg-[#13B8A6]"}`} /> {eyebrow}
-        </div>
-        <h2 className={`text-[30px] md:text-[38px] font-bold leading-tight tracking-tight ${dark ? "text-white" : "text-[#0B1F3A]"}`}>
-          {title} <span className={dark ? "text-[#5EEAD4]" : "text-[#13B8A6]"}>{accent}</span>
-        </h2>
-      </div>
-      {desc && <p className={`text-[15px] leading-relaxed self-end max-w-md ${dark ? "text-white/60" : "text-slate-500"}`}>{desc}</p>}
-    </div>
-  );
-}
-
-/* ------------------------------------------------------------------ */
-/*  Hero — "coming soon" constellation, dimmed / in-progress            */
-/* ------------------------------------------------------------------ */
-
-function ComingSoonMark() {
-  return (
-    <svg viewBox="0 0 480 360" className="w-full h-auto" role="img" aria-label="Project modules under construction">
-      <defs>
-        <style>{`
-          .dash { stroke-dasharray: 7 6; animation: crawl 1.8s linear infinite; }
-          @keyframes crawl { to { stroke-dashoffset: -52; } }
-        `}</style>
-      </defs>
-
-      <rect x="70" y="60" width="90" height="66" rx="12" fill="#2878FF" fillOpacity="0.06" />
-      <rect x="200" y="150" width="90" height="66" rx="12" fill="#13B8A6" fillOpacity="0.07" />
-      <rect x="330" y="60" width="90" height="66" rx="12" fill="#2878FF" fillOpacity="0.06" />
-      <rect x="70" y="240" width="90" height="66" rx="12" fill="#13B8A6" fillOpacity="0.07" />
-      <rect x="330" y="240" width="90" height="66" rx="12" fill="#2878FF" fillOpacity="0.06" />
-
-      <rect x="70" y="60" width="90" height="66" rx="12" fill="none" stroke="#2878FF" strokeWidth="2.5" className="dash" />
-      <rect x="200" y="150" width="90" height="66" rx="12" fill="none" stroke="#13B8A6" strokeWidth="2.5" className="dash" />
-      <rect x="330" y="60" width="90" height="66" rx="12" fill="none" stroke="#2878FF" strokeWidth="2.5" className="dash" />
-      <rect x="70" y="240" width="90" height="66" rx="12" fill="none" stroke="#13B8A6" strokeWidth="2.5" className="dash" />
-      <rect x="330" y="240" width="90" height="66" rx="12" fill="none" stroke="#2878FF" strokeWidth="2.5" className="dash" />
-
-      <line x1="160" y1="93" x2="200" y2="170" stroke="#0B1F3A" strokeWidth="2" strokeOpacity="0.25" />
-      <line x1="290" y1="170" x2="330" y2="93" stroke="#0B1F3A" strokeWidth="2" strokeOpacity="0.25" />
-      <line x1="160" y1="273" x2="200" y2="200" stroke="#0B1F3A" strokeWidth="2" strokeOpacity="0.25" />
-      <line x1="290" y1="200" x2="330" y2="273" stroke="#0B1F3A" strokeWidth="2" strokeOpacity="0.25" />
-
-      <circle cx="160" cy="93" r="3" fill="#2878FF" />
-      <circle cx="200" cy="170" r="3" fill="#13B8A6" />
-      <circle cx="290" cy="170" r="3" fill="#13B8A6" />
-      <circle cx="330" cy="93" r="3" fill="#2878FF" />
-      <circle cx="160" cy="273" r="3" fill="#13B8A6" />
-      <circle cx="200" cy="200" r="3" fill="#13B8A6" />
-      <circle cx="290" cy="200" r="3" fill="#13B8A6" />
-      <circle cx="330" cy="273" r="3" fill="#2878FF" />
-
-      <circle cx="245" cy="183" r="24" fill="#13B8A6" />
-      <path d="M233 183h24M245 171v24" stroke="#0B1F3A" strokeWidth="3" strokeLinecap="round" />
-
-      <text x="240" y="335" textAnchor="middle" fontFamily="monospace" fontSize="12" fontWeight="600" letterSpacing="2.5" fill="#0B1F3A" fillOpacity="0.55">
-        UNDER CONSTRUCTION
-      </text>
-    </svg>
-  );
-}
-function ProjectsHero() {
-  return (
-    <header className="relative bg-white pt-[150px] pb-20 px-6 overflow-hidden">
-      {/* XalTech grid background */}
-      <div
-        className="absolute inset-0 pointer-events-none"
-        style={{
-          backgroundImage: `
-            linear-gradient(rgba(19,184,166,0.07) 1px, transparent 1px),
-            linear-gradient(90deg, rgba(40,120,255,0.07) 1px, transparent 1px)
-          `,
-          backgroundSize: "64px 64px",
-          maskImage:
-            "radial-gradient(75% 75% at 30% 35%, black, transparent)",
-          WebkitMaskImage:
-            "radial-gradient(75% 75% at 30% 35%, black, transparent)",
-        }}
-      />
-
-      {/* Teal glow */}
-      <div
-        className="
-          absolute -top-32 -left-32
-          w-[500px] h-[500px]
-          bg-[#13B8A6]/10
-          rounded-full
-          blur-[120px]
-          pointer-events-none
-        "
-      />
-
-      {/* Blue glow */}
-      <div
-        className="
-          absolute top-10 right-[-180px]
-          w-[520px] h-[520px]
-          bg-[#2878FF]/10
-          rounded-full
-          blur-[130px]
-          pointer-events-none
-        "
-      />
-
-      <div className="relative max-w-7xl mx-auto grid lg:grid-cols-2 gap-12 items-center">
-        {/* LEFT CONTENT */}
+    <section className="border-b border-slate-200 bg-white px-6 pb-20 pt-[142px] md:pb-24">
+      <div className="mx-auto grid max-w-7xl items-center gap-14 lg:grid-cols-[0.9fr_1.1fr] lg:gap-20">
         <div>
-          <Badge
-            className="
-              bg-[#13B8A6]/8
-              text-[#0F8F83]
-              border border-[#13B8A6]/25
-              font-mono font-normal
-              text-[11.5px]
-              tracking-widest
-              uppercase
-              gap-2
-              py-2 px-3.5
-              mb-6
-              hover:bg-[#13B8A6]/10
-            "
-          >
-            <Hammer size={13} />
-            Coming soon
-          </Badge>
+          <div className="mb-6 inline-flex items-center gap-2 rounded-full border border-[#13B8A6]/25 bg-[#13B8A6]/5 px-3.5 py-2 font-mono text-[11px] uppercase tracking-[0.18em] text-[#0F8F83]">
+            <span className="h-2 w-2 rounded-full bg-[#13B8A6]" />
+            XalTech projects
+          </div>
 
-          <h1
-            className="
-              text-[38px]
-              sm:text-[50px]
-              lg:text-[56px]
-              font-bold
-              leading-[1.05]
-              tracking-tight
-              text-[#0B1F3A]
-              mb-6
-            "
-          >
-            Our projects are{" "}
-            <span
-              className="
-                bg-gradient-to-r
-                from-[#13B8A6]
-                to-[#2878FF]
-                bg-clip-text
-                text-transparent
-              "
-            >
-              in progress.
-            </span>
+          <h1 className="max-w-2xl text-[42px] font-bold leading-[1.04] tracking-[-0.035em] text-[#0B1F3A] sm:text-[54px] lg:text-[64px]">
+            Software we are
+            <span className="text-[#13B8A6]"> putting into real use.</span>
           </h1>
 
-          <p className="text-slate-600 text-[17px] leading-relaxed max-w-lg mb-8">
-            We're currently building our first wave of ERP systems, school
-            management platforms, and custom software for real clients. Case
-            studies land here as each one goes live.
+          <p className="mt-6 max-w-xl text-[16px] leading-7 text-slate-600 md:text-[17px]">
+            This is no longer a coming-soon portfolio. Our school management platform is live, and this page now grows around work that has actually been built, deployed, and used.
           </p>
 
-          <div className="flex flex-wrap gap-3">
-            <Button
-              size="lg"
-              className="
-                bg-[#13B8A6]
-                hover:bg-[#0fa594]
-                text-white
-                font-semibold
-                rounded-full
-                gap-2
-                shadow-[0_8px_30px_rgba(19,184,166,0.20)]
-              "
+          <div className="mt-8 flex flex-wrap gap-3">
+            <Link
+              to="/school"
+              className="inline-flex h-11 items-center gap-2 rounded-full bg-[#0B1F3A] px-6 text-sm font-semibold text-white transition-colors hover:bg-[#12345c]"
             >
-              Be one of our first projects
-              <ArrowRight size={16} />
-            </Button>
-
-            <a href="mailto:hello@xaltech.com">
-              <Button
-                size="lg"
-                variant="outline"
-                className="
-                  rounded-full
-                  border-slate-200
-                  text-[#0B1F3A]
-                  bg-white/70
-                  hover:bg-slate-50
-                  hover:border-[#13B8A6]/40
-                  gap-2
-                  shadow-sm
-                "
-              >
-                <Mail size={16} />
-                Get notified at launch
-              </Button>
-            </a>
+              Explore XalTech School <ArrowRight size={16} />
+            </Link>
+            <button
+              type="button"
+              onClick={() => window.dispatchEvent(new Event("open-contact"))}
+              className="inline-flex h-11 items-center gap-2 rounded-full border border-slate-300 bg-white px-6 text-sm font-semibold text-[#0B1F3A] transition-colors hover:border-[#13B8A6] hover:bg-[#13B8A6]/5"
+            >
+              Start a project
+            </button>
           </div>
         </div>
 
-        {/* RIGHT VISUAL */}
-        <ComingSoonMark />
-      </div>
-
-      {/* Bottom subtle brand line */}
-      <div
-        className="
-          absolute bottom-0 left-1/2 -translate-x-1/2
-          w-[80%] h-px
-          bg-gradient-to-r
-          from-transparent
-          via-[#13B8A6]/25
-          to-transparent
-        "
-      />
-    </header>
-  );
-}
-
-/* ------------------------------------------------------------------ */
-/*  What's coming — categories, honestly labeled as not-yet-published  */
-/* ------------------------------------------------------------------ */
-
-function WhatsComing() {
-  const categories = [
-    { icon: Layers, title: "ERP Systems", desc: "Finance, HR, inventory, and CRM deployments for growing businesses.", status: "In development" },
-    { icon: GraduationCap, title: "School Management", desc: "Enrollment, attendance, grading, and fee systems for schools.", status: "In development" },
-    { icon: AppWindow, title: "Custom Software", desc: "Web and mobile applications built around specific client workflows.", status: "Planned" },
-    { icon: Bot, title: "AI Automation", desc: "Chatbots, document processing, and workflow automation add-ons.", status: "Planned" },
-  ];
-  return (
-    <section id="projects" className="py-24 px-6">
-      <div className="max-w-7xl mx-auto">
-        <SectionHead
-          eyebrow="What's coming"
-          title="The work we're"
-          accent="building right now."
-          desc="Every category below maps to a real engagement in progress — we publish the case study once it's live with the client's approval."
-        />
-        <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-5">
-          {categories.map((c) => (
-            <Card key={c.title} className="border-dashed border-slate-300 rounded-2xl bg-[#F4F7FB]/60">
-              <CardContent className="p-7 flex flex-col gap-4">
-                <div className="flex items-center justify-between">
-                  <div className="w-11 h-11 rounded-xl bg-white border border-slate-200 flex items-center justify-center text-[#0B1F3A]">
-                    <c.icon size={19} />
-                  </div>
-                  <Badge variant="outline" className="font-mono text-[10px] font-normal text-slate-500 border-slate-300 gap-1.5">
-                    <Clock size={10} /> {c.status}
-                  </Badge>
-                </div>
-                <h4 className="text-[15px] font-bold text-[#0B1F3A]">{c.title}</h4>
-                <p className="text-[13px] text-slate-500 leading-relaxed">{c.desc}</p>
-                <div className="pt-3 border-t border-dashed border-slate-300 text-[12px] font-mono text-slate-400">
-                  Case study — coming soon
-                </div>
-              </CardContent>
-            </Card>
-          ))}
-        </div>
-      </div>
-    </section>
-  );
-}
-
-/* ------------------------------------------------------------------ */
-/*  Roadmap                                                             */
-/* ------------------------------------------------------------------ */
-
-function Roadmap() {
-  const steps = [
-    { icon: Hammer, title: "Foundation", desc: "Core ERP, school management, and platform architecture built and tested.", state: "done" },
-    { icon: Rocket, title: "First deployments", desc: "Early client systems going live — currently underway.", state: "active" },
-    { icon: Archive, title: "Case studies published", desc: "Real project write-ups added here as each client signs off.", state: "upcoming" },
-    { icon: Sparkles, title: "Full portfolio", desc: "A growing library of ERP, school, and custom software work.", state: "upcoming" },
-  ];
-  return (
-    <section className="py-24 px-6 bg-[#0B1F3A]">
-      <div className="max-w-7xl mx-auto">
-        <SectionHead dark eyebrow="Our roadmap" title="Honest about" accent="where we are." desc="XalTech is a young company — here's exactly where we stand, with nothing overstated." />
         <div className="relative">
-          <div className="absolute left-7 top-2 bottom-2 w-px bg-gradient-to-b from-[#13B8A6] to-[#2878FF] opacity-30" />
-          {steps.map((s) => (
-            <div key={s.title} className="grid grid-cols-[56px_1fr] gap-6 py-6">
-              <div
-                className={`w-14 h-14 rounded-2xl border flex items-center justify-center relative z-10 ${
-                  s.state === "done"
-                    ? "bg-[#13B8A6] border-[#13B8A6] text-[#0B1F3A]"
-                    : s.state === "active"
-                    ? "bg-[#0F2647] border-[#5EEAD4] text-[#5EEAD4]"
-                    : "bg-[#0F2647] border-white/15 text-white/40"
-                }`}
-              >
-                <s.icon size={20} />
-              </div>
-              <div>
-                <div className="flex items-center gap-2.5 mb-1">
-                  <h4 className="text-[17px] font-bold text-white">{s.title}</h4>
-                  {s.state === "active" && (
-                    <Badge className="bg-[#5EEAD4]/15 text-[#5EEAD4] border border-[#5EEAD4]/30 font-mono text-[10px] font-normal hover:bg-[#5EEAD4]/15">
-                      In progress
-                    </Badge>
-                  )}
+          <div className="overflow-hidden rounded-[28px] border border-slate-200 bg-[#F8FAFC] shadow-[0_24px_70px_rgba(11,31,58,0.08)]">
+            <div className="flex items-center justify-between border-b border-slate-200 bg-white px-5 py-4">
+              <div className="flex items-center gap-3">
+                <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-[#0B1F3A] text-[#5EEAD4]">
+                  <School size={20} />
                 </div>
-                <p className="text-[14px] text-white/55 leading-relaxed max-w-lg">{s.desc}</p>
+                <div>
+                  <div className="text-sm font-bold text-[#0B1F3A]">XalTech School</div>
+                  <div className="text-xs text-slate-500">School management platform</div>
+                </div>
               </div>
+              <Badge className="border border-emerald-200 bg-emerald-50 text-emerald-700 hover:bg-emerald-50">
+                Live
+              </Badge>
+            </div>
+
+            <div className="grid gap-px bg-slate-200 sm:grid-cols-3">
+              {[
+                ["24", "connected modules"],
+                ["1,240+", "students managed"],
+                ["1", "shared platform"],
+              ].map(([value, label]) => (
+                <div key={label} className="bg-white px-5 py-5">
+                  <div className="font-mono text-2xl font-bold text-[#0B1F3A]">{value}</div>
+                  <div className="mt-1 text-xs text-slate-500">{label}</div>
+                </div>
+              ))}
+            </div>
+
+            <div className="p-5 sm:p-6">
+              <div className="mb-4 flex items-center justify-between">
+                <div>
+                  <div className="text-xs font-semibold uppercase tracking-[0.16em] text-slate-400">Connected workflow</div>
+                  <div className="mt-1 text-sm font-semibold text-[#0B1F3A]">One school, one operating system</div>
+                </div>
+                <Network size={20} className="text-[#13B8A6]" />
+              </div>
+
+              <div className="grid grid-cols-2 gap-2 sm:grid-cols-4">
+                {SCHOOL_MODULES.map((module, index) => (
+                  <div key={module} className="rounded-xl border border-slate-200 bg-white p-3">
+                    <div className="font-mono text-[10px] text-slate-400">{String(index + 1).padStart(2, "0")}</div>
+                    <div className="mt-2 text-[12.5px] font-semibold text-[#0B1F3A]">{module}</div>
+                  </div>
+                ))}
+              </div>
+
+              <div className="mt-4 flex items-start gap-3 rounded-xl border border-[#13B8A6]/20 bg-[#13B8A6]/5 p-4">
+                <CheckCircle2 size={18} className="mt-0.5 shrink-0 text-[#0F8F83]" />
+                <p className="text-[12.5px] leading-5 text-slate-600">
+                  Built as a connected platform instead of separate tools, so academic, finance, reporting, and communication workflows can share the same records.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+function FeaturedProject() {
+  return (
+    <section className="bg-white px-6 py-24" id="projects">
+      <div className="mx-auto max-w-7xl">
+        <div className="mb-12 grid gap-8 lg:grid-cols-[0.7fr_1.3fr] lg:items-end">
+          <div>
+            <div className="mb-4 font-mono text-[11px] uppercase tracking-[0.2em] text-[#13B8A6]">Featured project</div>
+            <h2 className="text-[34px] font-bold leading-tight tracking-tight text-[#0B1F3A] md:text-[44px]">
+              XalTech School Management System
+            </h2>
+          </div>
+          <p className="max-w-2xl text-[15px] leading-7 text-slate-500 lg:justify-self-end">
+            A complete operational platform built around how a school actually works—from admissions and attendance to exams, grades, finance, reporting, communication, and administration.
+          </p>
+        </div>
+
+        <div className="grid overflow-hidden rounded-[28px] border border-slate-200 lg:grid-cols-[0.92fr_1.08fr]">
+          <div className="bg-[#0B1F3A] p-8 text-white md:p-10 lg:p-12">
+            <div className="flex flex-wrap items-center gap-2">
+              <Badge className="border border-[#5EEAD4]/25 bg-[#5EEAD4]/10 text-[#5EEAD4] hover:bg-[#5EEAD4]/10">Live in production</Badge>
+              <Badge className="border border-white/15 bg-white/5 text-white/70 hover:bg-white/5">Education ERP</Badge>
+            </div>
+
+            <h3 className="mt-8 text-[30px] font-bold leading-tight tracking-tight md:text-[38px]">
+              From fragmented school work to one connected workflow.
+            </h3>
+            <p className="mt-5 max-w-lg text-[14.5px] leading-7 text-white/60">
+              The product brings the school’s operational records into one platform so staff do not have to rebuild the same data across separate spreadsheets and disconnected tools.
+            </p>
+
+            <div className="mt-8 grid grid-cols-2 gap-3">
+              {[
+                [GraduationCap, "Academic operations"],
+                [Users, "Role-specific access"],
+                [BarChart3, "School reporting"],
+                [BellRing, "Communication workflows"],
+              ].map(([Icon, label]) => (
+                <div key={label} className="rounded-xl border border-white/10 bg-white/5 p-4">
+                  <Icon size={18} className="text-[#5EEAD4]" />
+                  <div className="mt-3 text-[12.5px] font-medium text-white/80">{label}</div>
+                </div>
+              ))}
+            </div>
+
+            <Link
+              to="/school"
+              className="mt-8 inline-flex h-11 items-center gap-2 rounded-full bg-[#13B8A6] px-6 text-sm font-bold text-[#0B1F3A] transition-colors hover:bg-[#5EEAD4]"
+            >
+              View project details <ArrowRight size={16} />
+            </Link>
+          </div>
+
+          <div className="bg-[#F8FAFC] p-7 md:p-10 lg:p-12">
+            <div className="space-y-1">
+              {SCHOOL_HIGHLIGHTS.map((item, index) => (
+                <div key={item.title} className="grid gap-4 border-b border-slate-200 py-5 last:border-b-0 sm:grid-cols-[48px_1fr]">
+                  <div className="flex h-11 w-11 items-center justify-center rounded-full border border-slate-200 bg-white text-[#0B1F3A]">
+                    <item.icon size={18} />
+                  </div>
+                  <div>
+                    <div className="flex items-center gap-3">
+                      <span className="font-mono text-[10px] text-slate-400">0{index + 1}</span>
+                      <h4 className="text-[16px] font-bold text-[#0B1F3A]">{item.title}</h4>
+                    </div>
+                    <p className="mt-2 max-w-xl text-[13.5px] leading-6 text-slate-500">{item.text}</p>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+function PortfolioDirection() {
+  return (
+    <section className="border-y border-slate-200 bg-[#F8FAFC] px-6 py-24">
+      <div className="mx-auto max-w-7xl">
+        <div className="mb-12 max-w-2xl">
+          <div className="mb-4 font-mono text-[11px] uppercase tracking-[0.2em] text-[#13B8A6]">Growing portfolio</div>
+          <h2 className="text-[34px] font-bold leading-tight tracking-tight text-[#0B1F3A] md:text-[44px]">
+            One live product today. More vertical systems next.
+          </h2>
+          <p className="mt-5 text-[15px] leading-7 text-slate-500">
+            We keep planned work clearly separated from shipped work. As products move into real deployments, they will appear here as full project entries rather than placeholders.
+          </p>
+        </div>
+
+        <div className="grid gap-4 md:grid-cols-3">
+          {PIPELINE.map((item) => (
+            <div key={item.title} className="rounded-2xl border border-slate-200 bg-white p-6">
+              <div className="flex items-start justify-between gap-4">
+                <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-[#0B1F3A] text-[#5EEAD4]">
+                  <item.icon size={18} />
+                </div>
+                <Badge variant="outline" className="border-slate-200 bg-slate-50 font-mono text-[10px] font-normal text-slate-500">
+                  {item.status}
+                </Badge>
+              </div>
+              <h3 className="mt-6 text-[17px] font-bold text-[#0B1F3A]">{item.title}</h3>
+              <p className="mt-3 text-[13.5px] leading-6 text-slate-500">{item.text}</p>
             </div>
           ))}
         </div>
@@ -446,55 +321,43 @@ function Roadmap() {
   );
 }
 
-/* ------------------------------------------------------------------ */
-/*  CTA                                                                  */
-/* ------------------------------------------------------------------ */
-
-function CTABand() {
+function CTA() {
   return (
-    <section className="px-6 py-20">
-      <div className="max-w-7xl mx-auto">
-        <div className="relative rounded-3xl bg-gradient-to-br from-[#0B1F3A] to-[#103257] p-10 md:p-16 overflow-hidden grid md:grid-cols-[1fr_auto] gap-8 items-center">
-          <div className="absolute w-[420px] h-[420px] rounded-full bg-[#13B8A6]/20 blur-3xl -top-40 -right-28 pointer-events-none" />
-          <div className="relative">
-            <div className="inline-flex items-center gap-2 text-[12px] font-mono tracking-widest uppercase text-[#5EEAD4] mb-4">
-              <Sparkles size={13} /> Be part of it early
+    <section className="bg-white px-6 py-20">
+      <div className="mx-auto max-w-7xl">
+        <div className="grid items-center gap-8 rounded-[28px] bg-[#0B1F3A] p-8 md:p-12 lg:grid-cols-[1fr_auto] lg:p-14">
+          <div>
+            <div className="mb-4 inline-flex items-center gap-2 font-mono text-[11px] uppercase tracking-[0.18em] text-[#5EEAD4]">
+              <Sparkles size={13} /> Build with XalTech
             </div>
-            <h2 className="text-[28px] md:text-[36px] font-bold text-white leading-tight mb-3">
-              Want your project to be<br />one of our first case studies?
+            <h2 className="max-w-2xl text-[30px] font-bold leading-tight tracking-tight text-white md:text-[38px]">
+              Have an operational problem that deserves its own system?
             </h2>
-            <p className="text-white/60 max-w-md text-[15px] leading-relaxed">
-              Early clients get closer attention and a direct line to the engineer building their system.
+            <p className="mt-4 max-w-xl text-[14.5px] leading-7 text-white/55">
+              Tell us how the work happens today. We can help turn that workflow into a focused product rather than another disconnected tool.
             </p>
           </div>
-          <div className="relative flex flex-col gap-3">
-            <Button size="lg" className="bg-[#13B8A6] hover:bg-[#5EEAD4] text-[#0B1F3A] font-bold rounded-full gap-2">
-              Book a consultation <ArrowRight size={16} />
-            </Button>
-            <a href="mailto:hello@xaltech.com">
-              <Button size="lg" variant="outline" className="rounded-full border-white/20 text-white bg-transparent hover:bg-white/10 w-full">
-                Email us instead
-              </Button>
-            </a>
-          </div>
+          <Button
+            size="lg"
+            onClick={() => window.dispatchEvent(new Event("open-contact"))}
+            className="rounded-full bg-[#13B8A6] font-bold text-[#0B1F3A] hover:bg-[#5EEAD4]"
+          >
+            Discuss your project <ArrowRight size={16} className="ml-2" />
+          </Button>
         </div>
       </div>
     </section>
   );
 }
-
-/* ------------------------------------------------------------------ */
-/*  Page                                                                 */
-/* ------------------------------------------------------------------ */
 
 export default function ProjectsPage() {
   return (
-    <div className="bg-white text-[#0B1F3A] font-sans">
-      <Header />
-      <ProjectsHero />
-      <WhatsComing />
-      <Roadmap />
-      <CTABand />
+    <div className="min-h-screen bg-white font-sans text-[#0B1F3A]">
+      <Header ctaLabel="Start a project" />
+      <Hero />
+      <FeaturedProject />
+      <PortfolioDirection />
+      <CTA />
       <Footer />
     </div>
   );
