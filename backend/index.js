@@ -392,7 +392,7 @@ app.get(
  */
 
 app.post(
-  "/sync-and-migration",
+  ["/sync-and-migration", "/api/sync-and-migration"],
   async (req, res) => {
     try {
       const alterMode =
