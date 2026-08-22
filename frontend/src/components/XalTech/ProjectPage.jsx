@@ -134,7 +134,7 @@ function Hero() {
           <div className="mt-8 flex flex-wrap gap-3">
             <Link
               to="/school"
-              className="inline-flex h-11 items-center gap-2 rounded-full bg-[#0B1F3A] px-6 text-sm font-semibold text-white transition-colors hover:bg-[#12345c]"
+              className="inline-flex h-11 items-center gap-2 rounded-full border border-slate-300 bg-white px-6 text-sm font-semibold text-[#0B1F3A] transition-colors hover:border-[#13B8A6] hover:bg-[#13B8A6]/5"
             >
               Explore XalTech School <ArrowRight size={16} />
             </Link>
