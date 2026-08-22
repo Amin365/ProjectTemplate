@@ -18,13 +18,10 @@ const requireJson = (req, res, next) => {
   return next();
 };
 
-// Public XalTech website submission endpoint. POST is the only public method.
+// The only anonymous XalTech contact endpoint. POST is the only public method.
 router.post('/xaltech/contacts', contactSubmissionLimiter, requireJson, createContact);
 
-// Backward-compatible alias used by older cached frontend builds.
-router.post('/contacts', contactSubmissionLimiter, requireJson, createContact);
-
-// All contact administration remains authenticated and Admin/Super Admin only.
+// Contact administration remains authenticated and Admin/Super Admin only.
 router.get('/contacts', adminOnly, listContacts);
 router.get('/contacts/:id', adminOnly, getContact);
 router.patch('/contacts/:id', adminOnly, updateContact);
