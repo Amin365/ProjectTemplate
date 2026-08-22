@@ -2,6 +2,12 @@ import { Op } from 'sequelize';
 import { Contact } from '../models/index.js';
 
 const REQUEST_TYPES = new Set(['general', 'school_demo']);
+const CONTACT_SOURCES = new Set([
+  'xaltech_web',
+  'xaltech_dialog',
+  'school_page_dialog',
+  'shared_book_demo_link',
+]);
 const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 const PHONE_RE = /^[0-9+()\-\s.]{7,32}$/;
 
@@ -38,6 +44,11 @@ export const createContact = async (req, res) => {
     const requestType = REQUEST_TYPES.has(req.body?.requestType)
       ? req.body.requestType
       : 'general';
+
+    const requestedSource = cleanSingleLine(req.body?.source, 80);
+    const source = CONTACT_SOURCES.has(requestedSource)
+      ? requestedSource
+      : 'xaltech_web';
 
     const name = cleanSingleLine(req.body?.name, 120);
     const email = cleanSingleLine(req.body?.email, 254).toLowerCase();
@@ -97,7 +108,7 @@ export const createContact = async (req, res) => {
       schoolLocation: requestType === 'school_demo' ? schoolLocation || null : null,
       studentCount: requestType === 'school_demo' ? studentCount : null,
       preferredDemoTime: requestType === 'school_demo' ? preferredDemoTime || null : null,
-      source: 'xaltech_web',
+      source,
     });
 
     // Never expose the stored database record to an anonymous caller.
