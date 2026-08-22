@@ -11,6 +11,7 @@ import { Toaster } from "@/components/ui/sonner"
 import { ThemeProvider } from './components/ThemeProvider.jsx'
 import {toast} from "sonner";
 import "./styles/globals.css";
+import "./styles/xaltech-mobile-cta.css";
 
 // Preload XalTech public routes during idle time so navigation feels instant
 if (typeof window !== "undefined" && 'requestIdleCallback' in window) {
