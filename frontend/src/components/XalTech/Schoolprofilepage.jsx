@@ -464,7 +464,7 @@ function TrustStrip() {
 
 function FAQ() {
   const faqs = [
-    { q: "Is Xode Academy really live, or a demo?", a: "It's live — actively used to run a real school's day-to-day operations, not a prototype." },
+    { q: "Is xalSchool really live, or a demo?", a: "It's live — actively used to run a real school's day-to-day operations, not a prototype." },
     { q: "Can it be customized for our school's grading system or terms?", a: "Yes — grading scale, term structure, and academic calendar are all configurable per school." },
     { q: "How long does setup take?", a: "A typical school is fully onboarded, with data migrated, in 4–6 weeks." },
     { q: "Do you offer a trial?", a: "Yes — pilot schools get full access free for three months. See the pilot program for details." },
