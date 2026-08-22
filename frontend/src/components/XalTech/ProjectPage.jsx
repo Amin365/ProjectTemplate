@@ -131,17 +131,17 @@ function Hero() {
             This is no longer a coming-soon portfolio. Our school management platform is live, and this page now grows around work that has actually been built, deployed, and used.
           </p>
 
-          <div className="mt-8 flex flex-wrap gap-3">
+          <div className="mt-8 flex flex-nowrap items-center gap-2 sm:gap-3">
             <Link
               to="/school"
-              className="inline-flex h-11 items-center gap-2 rounded-full border border-slate-300 bg-white px-6 text-sm font-semibold text-[#0B1F3A] transition-colors hover:border-[#13B8A6] hover:bg-[#13B8A6]/5"
+              className="inline-flex h-11 min-w-0 flex-[1.35] items-center justify-center gap-1.5 whitespace-nowrap rounded-full border border-slate-300 bg-white px-2 text-[10.5px] font-semibold text-[#0B1F3A] transition-colors hover:border-[#13B8A6] hover:bg-[#13B8A6]/5 sm:flex-none sm:gap-2 sm:px-6 sm:text-sm"
             >
-              Explore XalTech School <ArrowRight size={16} />
+              Explore XalTech School <ArrowRight size={14} />
             </Link>
             <button
               type="button"
               onClick={() => window.dispatchEvent(new Event("open-contact"))}
-              className="inline-flex h-11 items-center gap-2 rounded-full border border-slate-300 bg-white px-6 text-sm font-semibold text-[#0B1F3A] transition-colors hover:border-[#13B8A6] hover:bg-[#13B8A6]/5"
+              className="inline-flex h-11 min-w-0 flex-[0.85] items-center justify-center whitespace-nowrap rounded-full border border-slate-300 bg-white px-2 text-[10.5px] font-semibold text-[#0B1F3A] transition-colors hover:border-[#13B8A6] hover:bg-[#13B8A6]/5 sm:flex-none sm:px-6 sm:text-sm"
             >
               Start a project
             </button>
